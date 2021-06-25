@@ -23,30 +23,65 @@ class ArticleHolder extends StatelessWidget {
   const ArticleHolder({Key? key, required this.article}) : super(key: key);
 
   final Article article;
+  final double containerWidth = 150;
+
+  Widget _imageHolder() {
+    print(article.urlToImage);
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      child: AspectRatio(
+          aspectRatio: 1,
+          child: Image.network(
+            article.urlToImage,
+            fit: BoxFit.cover,
+          )),
+    );
+  }
+
+  Widget _articleIntro() {
+    String desc;
+    final int maxDescLen = 400;
+
+    if (article.description.length > maxDescLen) {
+      desc = article.description.substring(0, maxDescLen) + ' ...';
+    } else {
+      desc = article.description;
+    }
+
+    return Expanded(
+        child: Padding(
+            padding: EdgeInsets.only(left: 4, right: 3, top: 4),
+            child: Column(children: <Widget>[
+              Text(
+                article.title,
+                overflow: TextOverflow.clip,
+                textAlign: TextAlign.left,
+                textScaleFactor: 0.8,
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+              ),
+              
+              Text(
+                desc,
+                overflow: TextOverflow.clip,
+                textAlign: TextAlign.left,
+                textScaleFactor: 0.7,
+                style: TextStyle(fontSize: 14),
+              ),
+            ])));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      padding: EdgeInsets.only(top: 4, left: 2, right: 2, bottom:1),
+      height: this.containerWidth,
       child: Row(
+        textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Card(
-            clipBehavior: Clip.antiAlias,
-            // shape: RoundedRectangleBorder(
-            //   borderRadius: BorderRadius.circular(24),
-            // ),
-            child: AspectRatio(
-                aspectRatio: 1,
-                child: Image.network(
-                  article.urlToImage,
-                  fit: BoxFit.cover,
-                )),
-          ),
-          Container(
-              padding: new EdgeInsets.only(right: 13.0),
-              child: Expanded(child: Text(article.title))),
-        ],
+        children: <Widget>[this._imageHolder(), this._articleIntro()],
       ),
     );
   }

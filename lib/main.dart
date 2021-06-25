@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
 import 'src/newsApi/articles.dart';
 import 'src/appDrawer.dart';
-
-import 'package:flutter/foundation.dart';
 
 void main() {
   runApp(MyApp());
