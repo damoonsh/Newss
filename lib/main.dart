@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-import 'src/newsApi/articles.dart';
+import './src/newsApi/articles.dart';
+// ignore: unused_import
 import 'src/appDrawer.dart';
 
 void main() {
@@ -36,8 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      drawer: AppDrawbar(),
+      // appBar: AppBar(),
+      // drawer: AppDrawbar(),
       body: Center(
         child: Articles(),
       ),
