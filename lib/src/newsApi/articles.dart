@@ -29,7 +29,13 @@ class _ArticlesState extends State<Articles> {
           } else {
             print(snapshot.error);
           }
-          return CircularProgressIndicator();
+          return Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.orange,
+              semanticsLabel: 'loading', 
+              strokeWidth: 10,
+            )
+          );
           // return CupertinoActivityIndicator(radius: 50, animating: true,);
         });
   }

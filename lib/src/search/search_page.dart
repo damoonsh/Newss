@@ -8,11 +8,15 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
+  TextEditingController _searchQueryController = TextEditingController();
+  late String _valueBeingSearched;
+
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(left: 50, right: 50, top: 20),
         child: TextField(
+          controller: _searchQueryController,
           decoration: InputDecoration(
             hintText: 'Search',
             hintStyle: TextStyle(
@@ -27,6 +31,11 @@ class _SearchBarState extends State<SearchBar> {
           textAlign: TextAlign.center,
           textAlignVertical: TextAlignVertical.top,
           style: TextStyle(fontSize: 30),
+          onChanged: (newQuery) {
+            setState(() {
+              this._valueBeingSearched = newQuery;
+            });
+          },
         ));
   }
 }

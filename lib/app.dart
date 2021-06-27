@@ -6,27 +6,26 @@ import 'src/search/search_page.dart';
 import 'modules/app_bar.dart';
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'api',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: MyHomePage(),
+      home: HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [Articles(), Mock(), SearchBar()];
@@ -52,20 +51,22 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ];
 
+  BottomNavigationBar _bottomNavbar() => BottomNavigationBar(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      iconSize: 20,
+      backgroundColor: Colors.orange,
+      elevation: 1,
+      items: this._navList(),
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.blueAccent[500],
+      onTap: _onItemTapped);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          iconSize: 20,
-          backgroundColor: Colors.orange,
-          elevation: 1,
-          items: this._navList(),
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.blueAccent[500],
-          onTap: _onItemTapped),
+      bottomNavigationBar: this._bottomNavbar(),
       body: this._pages[this._selectedIndex],
     );
   }
