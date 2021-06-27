@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
-import './articleInfo.dart';
-import './articleImage.dart';
+import 'article_info.dart';
+import 'article_image.dart';
 
-import 'newsModel.dart';
+import 'news_model.dart';
 
 class ArticleHolder extends StatelessWidget {
   const ArticleHolder({Key? key, required this.article}) : super(key: key);
@@ -37,14 +37,24 @@ class ArticleHolder extends StatelessWidget {
 
   Widget _articleHandler() {
     return GestureDetector(
-      onDoubleTap: _launchURL,
-      child: Row(
+      onLongPress: _launchURL,
+      // onDoubleTap: ,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20),
+            topRight: Radius.circular(20)
+          )
+        ),
+        child:Row(
         textDirection: TextDirection.ltr,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           imageHolder(article.urlToImage),
-          articleIntro(article.title, article.description)
+          articleIntro(article.title, article.description, article.sourceName)
         ],
+      )
       ),
     );
   }

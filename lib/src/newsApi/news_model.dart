@@ -3,12 +3,14 @@ class Article {
   final String description;
   final String url;
   final String urlToImage;
+  final String sourceName;
 
   Article({
     required this.title,
     required this.description,
     required this.url,
     required this.urlToImage,
+    required this.sourceName,
   });
 
   factory Article.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class Article {
       urlToImage: json["urlToImage"] == null
           ? "https://miro.medium.com/max/2420/1*Bq0iXRI3Ix2Oj8-pv-lD_g.jpeg"
           : json["urlToImage"],
+      sourceName: json['source']['name']
     );
   }
 
@@ -28,6 +31,7 @@ class Article {
       "description": description,
       "url": url,
       "urlToImage": urlToImage,
+      'sourceName': sourceName
     };
   }
 }
