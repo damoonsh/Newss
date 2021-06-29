@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'src/newsApi/articles.dart';
 import 'src/newsApi/t.dart';
-import 'src/search/search_page.dart';
+import 'modules/search/search_page.dart';
 import 'modules/app_bar.dart';
 
 class MyApp extends StatelessWidget {

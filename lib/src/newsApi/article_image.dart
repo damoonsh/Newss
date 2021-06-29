@@ -10,8 +10,9 @@ Widget imageHolder(String urlToImage) {
           urlToImage,
           fit: BoxFit.cover,
           loadingBuilder: (context, child, progress) {
-            return progress == null ? child : 
-            CupertinoActivityIndicator(animating: true, radius: 35);
+            return progress == null
+                ? child
+                : CupertinoActivityIndicator(animating: true, radius: 35);
             // LinearProgressIndicator();
           },
         )),

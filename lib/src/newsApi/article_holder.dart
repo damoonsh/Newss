@@ -40,22 +40,20 @@ class ArticleHolder extends StatelessWidget {
       onLongPress: _launchURL,
       // onDoubleTap: ,
       child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(20),
-            topRight: Radius.circular(20)
-          )
-        ),
-        child:Row(
-        textDirection: TextDirection.ltr,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          imageHolder(article.urlToImage),
-          articleIntro(article.title, article.description, article.sourceName)
-        ],
-      )
-      ),
+          decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(20),
+                  topRight: Radius.circular(20))),
+          child: Row(
+            textDirection: TextDirection.ltr,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              imageHolder(article.urlToImage),
+              articleIntro(
+                  article.title, article.description, article.sourceName)
+            ],
+          )),
     );
   }
 

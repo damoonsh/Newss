@@ -15,14 +15,13 @@ class Article {
 
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
-      title: json["title"],
-      description: json["description"] == null ? "NO" : json["description"],
-      url: json["url"],
-      urlToImage: json["urlToImage"] == null
-          ? "https://miro.medium.com/max/2420/1*Bq0iXRI3Ix2Oj8-pv-lD_g.jpeg"
-          : json["urlToImage"],
-      sourceName: json['source']['name']
-    );
+        title: json["title"],
+        description: json["description"] == null ? "NO" : json["description"],
+        url: json["url"],
+        urlToImage: json["urlToImage"] == null
+            ? "https://miro.medium.com/max/2420/1*Bq0iXRI3Ix2Oj8-pv-lD_g.jpeg"
+            : json["urlToImage"],
+        sourceName: json['source']['name']);
   }
 
   Map<String, dynamic> toJson() {
