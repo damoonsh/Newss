@@ -5,13 +5,12 @@ import 'package:http/http.dart' as http;
 import 'news_model.dart';
 
 // Some constants
-
 final String apiKey = "84f2bbf63c7d4afe8419396d901fb246";
 final String baseUrl = "https://newsapi.org/v2";
 
 // defualt Url api to get the articles
 final Uri topHeadlineUrl = Uri.parse(
-    "$baseUrl/top-headlines?country=us&pageSize=100&apiKey=$apiKey");
+    "$baseUrl/top-headlines?country=us&pageSize=10&apiKey=$apiKey");
 
 // Client module for making api calls
 final http.Client client = http.Client();

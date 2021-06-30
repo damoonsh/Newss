@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class SearchPad extends StatefulWidget {
-  const SearchPad({Key? key}) : super(key: key);
+class SearchPage extends StatefulWidget {
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
-  _SearchPadState createState() => _SearchPadState();
+  _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchPadState extends State<SearchPad> {
+class _SearchPageState extends State<SearchPage> {
   TextEditingController _searchQueryController = TextEditingController();
   late String _valueBeingSearched;
+
+  bool _showSearch = false;
 
   Widget _searchBar() => Expanded(
           child: TextField(
@@ -42,10 +44,15 @@ class _SearchPadState extends State<SearchPad> {
         color: Colors.black26,
       ));
 
+  Widget _searchPad() => Row(children: [this._searchBar(), this._searchButton()]);
+
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(left: 50, right: 50, top: 40),
-        child: Row(children: [this._searchBar(), this._searchButton()]));
+        child: Column(children: [this._searchPad(), 
+        // this._showSearch ? Container(): Container(
+          ],)
+    );
   }
 }

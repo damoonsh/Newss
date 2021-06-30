@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'src/newsApi/articles.dart';
 import 'src/newsApi/t.dart';
 import 'modules/search/search_page.dart';
-import 'modules/app_bar.dart';
+// import 'modules/app_bar.dart';
 import 'src/newsApi/api_manager.dart';
 
 class MyApp extends StatelessWidget {
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       articles: fetchArticles(),
     ),
     Mock(),
-    SearchPad()
+    SearchPage()
   ];
 
   void _onItemTapped(int index) {
@@ -61,7 +61,6 @@ class _HomePageState extends State<HomePage> {
   BottomNavigationBar _bottomNavbar() => BottomNavigationBar(
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      
       iconSize: 20,
       backgroundColor: Colors.orange,
       elevation: 1,
@@ -76,11 +75,6 @@ class _HomePageState extends State<HomePage> {
       // appBar: appBar(),
       bottomNavigationBar: this._bottomNavbar(),
       body: this._pages[this._selectedIndex],
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   child: Icon(Icons.search_rounded)
-      // ),
     );
   }
 }

@@ -1,4 +1,5 @@
 class Article {
+  /* Object containing information about one Article. */
   final String title;
   final String description;
   final String url;
@@ -16,7 +17,7 @@ class Article {
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
         title: json["title"],
-        description: json["description"] == null ? "NO" : json["description"],
+        description: json["description"] == null ? "" : json["description"],
         url: json["url"],
         urlToImage: json["urlToImage"] == null
             ? "https://miro.medium.com/max/2420/1*Bq0iXRI3Ix2Oj8-pv-lD_g.jpeg"
@@ -36,6 +37,7 @@ class Article {
 }
 
 class NewsModel {
+  /* The format in which the api call is returned. */
   final String status;
   final int totalResults;
   final List<Article> articles;
