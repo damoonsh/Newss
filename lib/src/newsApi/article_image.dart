@@ -18,3 +18,22 @@ Widget imageHolder(String urlToImage) {
         )),
   );
 }
+
+// Widget imageHolder(String urlToImage) {
+//   return CircleAvatar(
+//     radius: 70,
+//     backgroundColor: Colors.white,
+//     child: AspectRatio(
+//         aspectRatio: 1,
+//         child: Image.network(
+//           urlToImage,
+//           fit: BoxFit.cover,
+//           loadingBuilder: (context, child, progress) {
+//             return progress == null
+//                 ? child
+//                 : CupertinoActivityIndicator(animating: true, radius: 35);
+//             // LinearProgressIndicator();
+//           },
+//         )),
+//   );
+// }

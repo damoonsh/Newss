@@ -4,6 +4,7 @@ import 'src/newsApi/articles.dart';
 import 'src/newsApi/t.dart';
 import 'modules/search/search_page.dart';
 import 'modules/app_bar.dart';
+import 'src/newsApi/api_manager.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -28,7 +29,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = [Articles(), Mock(), SearchBar()];
+  final List<Widget> _pages = [
+    Articles(
+      articles: fetchArticles(),
+    ),
+    Mock(),
+    SearchPad()
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -54,6 +61,7 @@ class _HomePageState extends State<HomePage> {
   BottomNavigationBar _bottomNavbar() => BottomNavigationBar(
       showSelectedLabels: false,
       showUnselectedLabels: false,
+      
       iconSize: 20,
       backgroundColor: Colors.orange,
       elevation: 1,
@@ -65,9 +73,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
+      // appBar: appBar(),
       bottomNavigationBar: this._bottomNavbar(),
       body: this._pages[this._selectedIndex],
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   child: Icon(Icons.search_rounded)
+      // ),
     );
   }
 }

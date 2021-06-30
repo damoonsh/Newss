@@ -29,13 +29,13 @@ Widget articleDescription(String description) {
       ? description.substring(0, maxDescLen) + ' ...'
       : description;
 
-  return Text(
+  return Expanded(child:Text(
     description,
     overflow: TextOverflow.clip,
     textAlign: TextAlign.left,
     textScaleFactor: 0.7,
     style: GoogleFonts.lato(textStyle: descriptionStyle),
-  );
+  ));
 }
 
 Widget articleSourceName(String sourceName) {

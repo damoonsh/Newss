@@ -5,18 +5,15 @@ import 'news_model.dart';
 import 'article_holder.dart';
 import 'api_manager.dart';
 
-class Articles extends StatefulWidget {
-  Articles({Key? key}) : super(key: key);
+class Articles extends StatelessWidget {
+  const Articles({Key? key, required this.articles}) : super(key: key);
 
-  @override
-  _ArticlesState createState() => _ArticlesState();
-}
+  final Future<NewsModel> articles;
 
-class _ArticlesState extends State<Articles> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<NewsModel>(
-        future: fetchArticles(),
+    return SafeArea(top:true, child: FutureBuilder<NewsModel>(
+        future: articles,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
@@ -36,6 +33,6 @@ class _ArticlesState extends State<Articles> {
             strokeWidth: 10,
           ));
           // return CupertinoActivityIndicator(radius: 50, animating: true,);
-        });
+        }));
   }
 }
