@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'src/newsApi/articles.dart';
-import 'src/newsApi/t.dart';
-import 'modules/search/search_page.dart';
-// import 'modules/app_bar.dart';
+import 'src/newsApi/favorite.dart';
+import 'src/newsApi/search_page.dart';
+import 'modules/app_bar.dart';
 import 'src/newsApi/api_manager.dart';
+import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -72,7 +73,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: appBar(),
+      appBar: appBar(),
       bottomNavigationBar: this._bottomNavbar(),
       body: this._pages[this._selectedIndex],
     );

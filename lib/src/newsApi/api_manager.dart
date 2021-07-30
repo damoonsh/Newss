@@ -10,19 +10,22 @@ final String baseUrl = "https://newsapi.org/v2";
 
 // defualt Url api to get the articles
 final Uri topHeadlineUrl = Uri.parse(
-    "$baseUrl/top-headlines?country=us&pageSize=10&apiKey=$apiKey");
+    "$baseUrl/top-headlines?country=us&pageSize=25&apiKey=$apiKey");
 
 // Client module for making api calls
 final http.Client client = http.Client();
 
 Future<NewsModel> searchArticles(String keyword, [String category = ""]) async {
   Uri searchUrl = Uri.parse(category == ""
-      ? "$baseUrl/everything?q=$keyword"
-      : "$baseUrl/everything?q=$keyword&category=$category");
+      ? "$baseUrl/everything?q=$keyword&Size=25&apiKey=$apiKey"
+      : "$baseUrl/everything?q=$keyword&category=$category&Size=25&apiKey=$apiKey");
+    
 
-  print(keyword);
+  print(searchUrl);
 
   http.Response response = await client.get(searchUrl);
+
+  print(response.statusCode);
 
   return NewsModel.fromJson(jsonDecode(response.body));
 }

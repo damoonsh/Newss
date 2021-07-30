@@ -1,4 +1,9 @@
+import 'package:api/src/newsApi/news_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'api_manager.dart';
+import 'article_holder.dart';
+import 'articles.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -11,7 +16,11 @@ class _SearchPageState extends State<SearchPage> {
   TextEditingController _searchQueryController = TextEditingController();
   late String _valueBeingSearched;
 
-  bool _showSearch = false;
+  Widget _searchResults = Center(
+    child: Text("Search Anything ..."),
+  );
+
+  bool _searched = false;
 
   Widget _searchBar() => Expanded(
           child: TextField(
@@ -38,21 +47,39 @@ class _SearchPageState extends State<SearchPage> {
       ));
 
   Widget _searchButton() => ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        setState(() {
+          this._searchResults = Scaffold(
+              body:
+                  Articles(articles: searchArticles(this._valueBeingSearched)));
+          
+            this._searched = true;
+        });
+      },
       child: Icon(
         Icons.arrow_forward_sharp,
         color: Colors.black26,
       ));
 
-  Widget _searchPad() => Row(children: [this._searchBar(), this._searchButton()]);
+  Widget _searchPad() =>
+      Row(children: [this._searchBar(), this._searchButton()]);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.only(left: 50, right: 50, top: 40),
-        child: Column(children: [this._searchPad(), 
-        // this._showSearch ? Container(): Container(
-          ],)
-    );
+    if (this._searched) {
+      return SafeArea(
+          top: true,
+          child: Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: this._searchResults
+            )
+      );
+    } else {
+      return Container(
+          // padding: EdgeInsets.only(left: 50, right: 50, top: 40),
+          child: Column(
+        children: [this._searchPad(), this._searchResults],
+      ));
+    }
   }
 }

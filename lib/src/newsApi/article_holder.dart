@@ -11,8 +11,8 @@ class ArticleHolder extends StatelessWidget {
   final Article article;
   final double containerHeight = 150;
 
-  final TextStyle _descriptionStyle =
-      const TextStyle(fontSize: 14, color: const Color.fromRGBO(30, 20, 20, 0.7));
+  final TextStyle _descriptionStyle = const TextStyle(
+      fontSize: 14, color: const Color.fromRGBO(30, 20, 20, 0.7));
 
   final TextStyle _titleStyle = const TextStyle(
     fontSize: 20,
@@ -22,14 +22,14 @@ class ArticleHolder extends StatelessWidget {
   Widget _imageHolder() => Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: AspectRatio(
-            aspectRatio: 0.8,
+            aspectRatio: 1,
             child: Image.network(
               article.urlToImage,
               fit: BoxFit.cover,
               loadingBuilder: (context, child, progress) {
                 return progress == null
                     ? child
-                    : CupertinoActivityIndicator(animating: true, radius: 35);
+                    : CupertinoActivityIndicator(animating: true, radius: 5);
                 // LinearProgressIndicator();
               },
             )),
@@ -37,7 +37,9 @@ class ArticleHolder extends StatelessWidget {
 
   Widget _articleTitle() {
     int index = article.title.split('').reversed.join().indexOf('-');
-    String trimedTitle = index != -1 ? article.title.substring(0, article.title.length - 2 - index) : article.title;
+    String trimedTitle = index != -1
+        ? article.title.substring(0, article.title.length - 2 - index)
+        : article.title;
 
     return Text(
       trimedTitle,
@@ -48,14 +50,14 @@ class ArticleHolder extends StatelessWidget {
     );
   }
 
-  Widget _articleDescription() => Expanded(
-        child: Text(
-      article.description,
-      overflow: TextOverflow.clip,
-      textAlign: TextAlign.left,
-      textScaleFactor: 0.7,
-      style: GoogleFonts.lato(textStyle: this._descriptionStyle),
-    ));
+  // Widget _articleDescription() => Expanded(
+  //       child: Text(
+  //     article.description,
+  //     overflow: TextOverflow.clip,
+  //     textAlign: TextAlign.left,
+  //     textScaleFactor: 0.7,
+  //     style: GoogleFonts.lato(textStyle: this._descriptionStyle),
+  //   ));
 
   Widget _articleSourceName() => Text(
         article.sourceName,
@@ -67,15 +69,15 @@ class ArticleHolder extends StatelessWidget {
 
   Widget _articleIntro() => Expanded(
       child: Padding(
-          padding: EdgeInsets.only(left: 5, right: 5, top: 3),
+          padding: EdgeInsets.only(left: 5, right: 10, top: 3),
           child: Container(
               child: Column(children: <Widget>[
-             this._articleTitle(),
+            this._articleTitle(),
             this._articleSourceName(),
             SizedBox(
               height: 5,
             ),
-            this._articleDescription(),
+            // this._articleDescription(),
           ]))));
 
   void _launchURL() {
