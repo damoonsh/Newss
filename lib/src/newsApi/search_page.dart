@@ -1,8 +1,8 @@
-import 'package:api/src/newsApi/news_model.dart';
+// import 'package:api/src/newsApi/news_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'api_manager.dart';
-import 'article_holder.dart';
+// import 'article_holder.dart';
 import 'articles.dart';
 
 class SearchPage extends StatefulWidget {

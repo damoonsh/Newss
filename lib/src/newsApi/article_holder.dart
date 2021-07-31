@@ -1,8 +1,9 @@
+import 'package:api/src/newsApi/favorite.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:provider/provider.dart';
 import 'news_model.dart';
 
 class ArticleHolder extends StatelessWidget {
@@ -11,8 +12,8 @@ class ArticleHolder extends StatelessWidget {
   final Article article;
   final double containerHeight = 150;
 
-  final TextStyle _descriptionStyle = const TextStyle(
-      fontSize: 14, color: const Color.fromRGBO(30, 20, 20, 0.7));
+  // final TextStyle _descriptionStyle = const TextStyle(
+  //     fontSize: 14, color: const Color.fromRGBO(30, 20, 20, 0.7));
 
   final TextStyle _titleStyle = const TextStyle(
     fontSize: 20,
@@ -103,10 +104,20 @@ class ArticleHolder extends StatelessWidget {
     );
   }
 
-  Widget _articleHandler() {
+  Widget _articleHandler(BuildContext context) {
+    bool favAlready = context.select<FavoriteArticles, bool>(
+      // Here, we are only interested whether [item] is inside the cart.
+      (articles) => articles.items.contains(article),
+    );
+    
+
     return GestureDetector(
-      onLongPress: _launchURL,
-      // onDoubleTap: ,
+      onTap: _launchURL,
+      onDoubleTap: () {
+        favAlready ? 
+        context.read<FavoriteArticles>().remove(article):
+        context.read<FavoriteArticles>().add(article);
+      },
       child: Container(
           decoration: BoxDecoration(
               color: Colors.grey[100],
@@ -128,6 +139,6 @@ class ArticleHolder extends StatelessWidget {
         margin: EdgeInsets.all(5),
         height: this.containerHeight,
         // color: Color.fromRGBO(5, 2, 4, 0.5),
-        child: this._articleHandler());
+        child: this._articleHandler(context));
   }
 }
