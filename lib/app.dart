@@ -1,6 +1,4 @@
-import 'package:api/src/newsApi/news_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import 'src/newsApi/articles.dart';
 import 'src/newsApi/favorite.dart';
@@ -39,6 +37,8 @@ class _HomePageState extends State<HomePage> {
     SearchPage()
   ];
 
+  final pageController = PageController();
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -69,14 +69,20 @@ class _HomePageState extends State<HomePage> {
       items: this._navList(),
       currentIndex: _selectedIndex,
       selectedItemColor: Colors.blueAccent[500],
-      onTap: _onItemTapped);
+      onTap: (int index) {
+        pageController.jumpToPage(index);
+      });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBar(),
-        bottomNavigationBar: this._bottomNavbar(),
-        body: this._pages[this._selectedIndex],
-      );
+      appBar: appBar(),
+      bottomNavigationBar: this._bottomNavbar(),
+      body: PageView(
+        children: this._pages,
+        controller: pageController,
+        onPageChanged: _onItemTapped,
+      ),
+    );
   }
 }

@@ -12,7 +12,9 @@ class SearchPage extends StatefulWidget {
   _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPageState extends State<SearchPage>
+    with AutomaticKeepAliveClientMixin  {
+  
   TextEditingController _searchQueryController = TextEditingController();
   late String _valueBeingSearched;
 
@@ -52,8 +54,8 @@ class _SearchPageState extends State<SearchPage> {
           this._searchResults = Scaffold(
               body:
                   Articles(articles: searchArticles(this._valueBeingSearched)));
-          
-            this._searched = true;
+
+          this._searched = true;
         });
       },
       child: Icon(
@@ -66,14 +68,13 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     if (this._searched) {
       return SafeArea(
           top: true,
           child: Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: this._searchResults
-            )
-      );
+              padding: EdgeInsets.only(top: 10), child: this._searchResults));
     } else {
       return Container(
           // padding: EdgeInsets.only(left: 50, right: 50, top: 40),
@@ -82,4 +83,7 @@ class _SearchPageState extends State<SearchPage> {
       ));
     }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

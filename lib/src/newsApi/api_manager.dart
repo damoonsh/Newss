@@ -19,13 +19,8 @@ Future<NewsModel> searchArticles(String keyword, [String category = ""]) async {
   Uri searchUrl = Uri.parse(category == ""
       ? "$baseUrl/everything?q=$keyword&Size=25&apiKey=$apiKey"
       : "$baseUrl/everything?q=$keyword&category=$category&Size=25&apiKey=$apiKey");
-    
-
-  print(searchUrl);
 
   http.Response response = await client.get(searchUrl);
-
-  print(response.statusCode);
 
   return NewsModel.fromJson(jsonDecode(response.body));
 }
