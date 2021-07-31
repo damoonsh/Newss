@@ -1,4 +1,3 @@
-import 'package:api/src/newsApi/article_holder.dart';
 import 'package:api/src/newsApi/news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -74,18 +73,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProxyProvider<Article, FavoriteArticles>(
-      create: (context) => FavoriteArticles(), 
-      update: (context, newArticle, favArticles) {
-        favArticles!.add(newArticle);
-
-        return favArticles;
-      }, 
-      child: Scaffold(
+    return Scaffold(
         appBar: appBar(),
         bottomNavigationBar: this._bottomNavbar(),
         body: this._pages[this._selectedIndex],
-      )
-    );
+      );
   }
 }
