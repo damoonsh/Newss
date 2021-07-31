@@ -71,10 +71,8 @@ class _SearchPageState extends State<SearchPage>
     super.build(context);
 
     if (this._searched) {
-      return SafeArea(
-          top: true,
-          child: Padding(
-              padding: EdgeInsets.only(top: 10), child: this._searchResults));
+      return Padding(
+              padding: EdgeInsets.only(top: 10), child: this._searchResults);
     } else {
       return Container(
           // padding: EdgeInsets.only(left: 50, right: 50, top: 40),

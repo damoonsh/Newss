@@ -72,6 +72,7 @@ class ArticleHolder extends StatelessWidget {
       child: Padding(
           padding: EdgeInsets.only(left: 5, right: 10, top: 3),
           child: Container(
+            color: Colors.grey[100],
               child: Column(children: <Widget>[
             this._articleTitle(),
             this._articleSourceName(),
@@ -109,8 +110,9 @@ class ArticleHolder extends StatelessWidget {
       // Here, we are only interested whether [item] is inside the cart.
       (articles) => articles.items.contains(article),
     );
-    
 
+    var _articleColor = favAlready ? Colors.blue:Colors.grey[100];
+    
     return GestureDetector(
       onTap: _launchURL,
       onDoubleTap: () {
@@ -120,7 +122,7 @@ class ArticleHolder extends StatelessWidget {
       },
       child: Container(
           decoration: BoxDecoration(
-              color: Colors.grey[100],
+              color: _articleColor,
               borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(20),
                   topRight: Radius.circular(20))),
