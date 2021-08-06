@@ -24,7 +24,7 @@ class Articles extends StatelessWidget {
             itemCount: snapshot.data!.articles.length,
             itemBuilder: (context, index) {
               var article = snapshot.data!.articles[index];
-              return ArticleHolder(article: article);
+              return ArticleHolder(article: article, isFavorite: false,);
             },
           );
         } else {

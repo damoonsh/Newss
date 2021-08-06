@@ -1,16 +1,12 @@
-# api
+# NewSS App
 
-A new Flutter project.
+This app is a side project that I worked on to practice building apps with flutter. It fetches new articles from [newapi](https://newsapi.org/) then it is rendered in real time.
 
-## Getting Started
+# Main Page 
+<img src="./img/main.jpg" width=60% height=70% alt="main"/>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Favorites Page
+<img src="./img/favorites.jpg" width=60% height=80% alt="favorites"/>  |
+  
+# Search Page
+<img src="./img/search.jpg" width=60% height=80% alt="search"/>  

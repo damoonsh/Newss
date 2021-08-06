@@ -59,7 +59,7 @@ class Mock extends StatelessWidget {
               itemCount: favArticles.length,
               itemBuilder: (context, index) {
                 var article = favArticles[index];
-                return ArticleHolder(article: article);
+                return ArticleHolder(article: article, isFavorite: true,);
               },
             )));
   }

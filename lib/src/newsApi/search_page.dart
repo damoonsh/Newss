@@ -1,8 +1,6 @@
-// import 'package:api/src/newsApi/news_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'api_manager.dart';
-// import 'article_holder.dart';
 import 'articles.dart';
 
 class SearchPage extends StatefulWidget {
@@ -13,8 +11,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage>
-    with AutomaticKeepAliveClientMixin  {
-  
+    with AutomaticKeepAliveClientMixin {
   TextEditingController _searchQueryController = TextEditingController();
   late String _valueBeingSearched;
 
@@ -24,29 +21,31 @@ class _SearchPageState extends State<SearchPage>
 
   bool _searched = false;
 
-  Widget _searchBar() => Expanded(
-          child: TextField(
-        controller: _searchQueryController,
-        decoration: InputDecoration(
-          hintText: 'Search',
-          hintStyle: TextStyle(
-            color: Colors.orange,
+  Widget _searchBar() => 
+  Expanded(flex: 3,
+            child: TextField(
+          controller: _searchQueryController,
+          decoration: InputDecoration(
+            hintText: 'Search',
+            hintStyle: TextStyle(
+              color: Colors.orange,
+            ),
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
           ),
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-        ),
-        keyboardType: TextInputType.multiline,
-        keyboardAppearance: Brightness.light,
-        showCursor: true,
-        textAlign: TextAlign.center,
-        textAlignVertical: TextAlignVertical.top,
-        style: TextStyle(fontSize: 30),
-        onChanged: (newQuery) {
-          setState(() {
-            this._valueBeingSearched = newQuery;
-          });
-        },
-      ));
+          keyboardType: TextInputType.multiline,
+          keyboardAppearance: Brightness.light,
+          showCursor: true,
+          textAlign: TextAlign.center,
+          textAlignVertical: TextAlignVertical.top,
+          style: TextStyle(fontSize: 30),
+          onChanged: (newQuery) {
+            setState(() {
+              this._valueBeingSearched = newQuery;
+            });
+          },
+        )
+  );
 
   Widget _searchButton() => ElevatedButton(
       onPressed: () {
@@ -62,24 +61,49 @@ class _SearchPageState extends State<SearchPage>
         Icons.arrow_forward_sharp,
         color: Colors.black26,
       ));
+  String _dropdownValue = 'Default';
+  Widget _categoryButton() => DropdownButton<String>(
+        value: _dropdownValue,
+        icon: const Icon(Icons.arrow_downward),
+        iconSize: 15,
+        elevation: 3,
+        style: const TextStyle(color: Colors.deepOrange),
+        onChanged: (String? newValue) {
+          setState(() {
+            _dropdownValue = newValue!;
+          });
+        },
+        items: <String>['Technology', 'History', 'Politics', 'Default']
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      );
 
   Widget _searchPad() =>
-      Row(children: [this._searchBar(), this._searchButton()]);
+      Row(children: [this._searchBar(), this._categoryButton(), this._searchButton()]);
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
-    if (this._searched) {
-      return Padding(
-              padding: EdgeInsets.only(top: 10), child: this._searchResults);
-    } else {
-      return Container(
-          // padding: EdgeInsets.only(left: 50, right: 50, top: 40),
-          child: Column(
-        children: [this._searchPad(), this._searchResults],
-      ));
-    }
+    return Column(children: <Widget>[
+      this._searchPad(),
+      Expanded(child: this._searchResults)
+    ]);
+
+    // if (this._searched) {
+    //   return Column(children: <Widget>[this._searchPad(),
+    //     Expanded(child: this._searchResults)]);
+    // } else {
+    //   return Container(
+    //       // padding: EdgeInsets.only(left: 50, right: 50, top: 40),
+    //       child: Column(
+    //     children: [this._searchPad(), this._searchResults],
+    //   ));
+    // }
   }
 
   @override

@@ -7,9 +7,12 @@ import 'package:provider/provider.dart';
 import 'news_model.dart';
 
 class ArticleHolder extends StatelessWidget {
-  const ArticleHolder({Key? key, required this.article}) : super(key: key);
+  const ArticleHolder(
+      {Key? key, required this.article, required this.isFavorite})
+      : super(key: key);
 
   final Article article;
+  final bool isFavorite;
   final double containerHeight = 150;
 
   // final TextStyle _descriptionStyle = const TextStyle(
@@ -72,15 +75,15 @@ class ArticleHolder extends StatelessWidget {
       child: Padding(
           padding: EdgeInsets.only(left: 5, right: 10, top: 3),
           child: Container(
-            color: Colors.grey[100],
+              color: Colors.grey[100],
               child: Column(children: <Widget>[
-            this._articleTitle(),
-            this._articleSourceName(),
-            SizedBox(
-              height: 5,
-            ),
-            // this._articleDescription(),
-          ]))));
+                this._articleTitle(),
+                this._articleSourceName(),
+                SizedBox(
+                  height: 5,
+                ),
+                // this._articleDescription(),
+              ]))));
 
   void _launchURL() {
     FlutterWebBrowser.openWebPage(
@@ -111,14 +114,14 @@ class ArticleHolder extends StatelessWidget {
       (articles) => articles.items.contains(article),
     );
 
-    var _articleColor = favAlready ? Colors.blue:Colors.grey[100];
-    
+    var _articleColor = !isFavorite & favAlready ? Colors.blue : Colors.grey[100];
+
     return GestureDetector(
       onTap: _launchURL,
       onDoubleTap: () {
-        favAlready ? 
-        context.read<FavoriteArticles>().remove(article):
-        context.read<FavoriteArticles>().add(article);
+        favAlready
+            ? context.read<FavoriteArticles>().remove(article)
+            : context.read<FavoriteArticles>().add(article);
       },
       child: Container(
           decoration: BoxDecoration(
