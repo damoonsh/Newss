@@ -45,12 +45,15 @@ class ArticleHolder extends StatelessWidget {
         ? article.title.substring(0, article.title.length - 2 - index)
         : article.title;
 
-    return Text(
-      trimedTitle,
-      overflow: TextOverflow.clip,
-      textAlign: TextAlign.left,
-      textScaleFactor: 0.6,
-      style: this._titleStyle,
+    return Expanded(
+      flex: 3,
+      child: Text(
+        trimedTitle,
+        overflow: TextOverflow.clip,
+        textAlign: TextAlign.left,
+        textScaleFactor: 0.6,
+        style: this._titleStyle,
+      ),
     );
   }
 
@@ -63,27 +66,32 @@ class ArticleHolder extends StatelessWidget {
   //     style: GoogleFonts.lato(textStyle: this._descriptionStyle),
   //   ));
 
-  Widget _articleSourceName() => Text(
-        article.sourceName,
-        overflow: TextOverflow.clip,
-        textAlign: TextAlign.left,
-        textScaleFactor: 0.7,
-        style: GoogleFonts.lato(textStyle: TextStyle(fontSize: 12)),
+  Widget _articleSourceName() => Expanded(
+        flex: 1,
+          child: Text(
+            article.sourceName,
+            overflow: TextOverflow.clip,
+            textAlign: TextAlign.left,
+            textScaleFactor: 0.7,
+            style: GoogleFonts.lato(textStyle: TextStyle(fontSize: 15, color: Colors.black54)),
+          ),
       );
 
   Widget _articleIntro() => Expanded(
       child: Padding(
-          padding: EdgeInsets.only(left: 5, right: 10, top: 3),
+          padding: EdgeInsets.only(left: 5, right: 10, top: 6),
           child: Container(
               color: Colors.grey[100],
-              child: Column(children: <Widget>[
-                this._articleTitle(),
-                this._articleSourceName(),
-                SizedBox(
-                  height: 5,
-                ),
-                // this._articleDescription(),
-              ]))));
+              child: Center(
+                child: Column(children: <Widget>[
+                  this._articleTitle(),
+                  this._articleSourceName(),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  // this._articleDescription(),
+                ]),
+              ))));
 
   void _launchURL() {
     FlutterWebBrowser.openWebPage(
@@ -114,7 +122,8 @@ class ArticleHolder extends StatelessWidget {
       (articles) => articles.items.contains(article),
     );
 
-    var _articleColor = !isFavorite & favAlready ? Colors.blue : Colors.grey[100];
+    var _articleColor =
+        !isFavorite & favAlready ? Colors.blue : Colors.grey[100];
 
     return GestureDetector(
       onTap: _launchURL,
