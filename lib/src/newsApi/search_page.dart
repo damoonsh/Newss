@@ -16,10 +16,8 @@ class _SearchPageState extends State<SearchPage>
   late String _valueBeingSearched;
 
   Widget _searchResults = Center(
-    child: Text("Search Anything ..."),
+    child: Text("Search Anything ...", style: TextStyle(color: Colors.grey[100]),),
   );
-
-  bool _searched = false;
 
   Widget _searchBar() => Expanded(
       flex: 3,
@@ -57,34 +55,32 @@ class _SearchPageState extends State<SearchPage>
   String _dropdownValue = 'Default';
 
   Widget _searchButton() => Padding(
-    padding: EdgeInsets.only(right:6),
-    child: ElevatedButton(
-      
-        onPressed: () {
-          setState(() {
-            this._searchResults =  Scaffold(
-                body:
-                    this._dropdownValue == 'Default' ?
-                    Articles(articles: searchArticles(this._valueBeingSearched)):
-                    Articles(articles: searchArticles(this._valueBeingSearched, this._dropdownValue))
-                    );
-  
-            this._searched = true;
-          });
-        },
-        
-        style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
-                  elevation: MaterialStateProperty.all(0.6),
-                  
-                  padding: MaterialStateProperty.all(EdgeInsets.all(1)),
-                  textStyle: MaterialStateProperty.all(TextStyle(fontSize: 1))),
-        child: Icon(
-          
-          Icons.search,
-          color: Colors.black26,
-        )),
-  );
+        padding: EdgeInsets.only(right: 6),
+        child: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                this._searchResults = Scaffold(
+                    body: this._dropdownValue == 'Default'
+                        ? Articles(
+                            articles: searchArticles(this._valueBeingSearched))
+                        : Articles(
+                            articles: searchArticles(this._valueBeingSearched,
+                                this._dropdownValue)));
+              });
+
+              // Dismiss the keyboard
+              FocusScope.of(context).unfocus();
+            },
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                elevation: MaterialStateProperty.all(0.6),
+                padding: MaterialStateProperty.all(EdgeInsets.all(1)),
+                textStyle: MaterialStateProperty.all(TextStyle(fontSize: 1))),
+            child: Icon(
+              Icons.search,
+              color: Colors.black26,
+            )),
+      );
   Widget _categoryButton() => DropdownButton<String>(
         value: _dropdownValue,
         icon: const Icon(Icons.arrow_downward),
@@ -96,8 +92,16 @@ class _SearchPageState extends State<SearchPage>
             _dropdownValue = newValue!;
           });
         },
-        items: <String>['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology', 'Default']
-            .map<DropdownMenuItem<String>>((String value) {
+        items: <String>[
+          'business',
+          'entertainment',
+          'general',
+          'health',
+          'science',
+          'sports',
+          'technology',
+          'Default'
+        ].map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(value),
