@@ -81,6 +81,7 @@ class _SearchPageState extends State<SearchPage>
               color: Colors.black26,
             )),
       );
+      
   Widget _categoryButton() => DropdownButton<String>(
         value: _dropdownValue,
         icon: const Icon(Icons.arrow_downward),

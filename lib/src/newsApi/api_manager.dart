@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-// import 'package:path_provider/path_provider.dart';
+import 'package:path_provider/path_provider.dart';
 import 'news_model.dart';
-// import 'dart:io';
+import 'dart:io';
 
 // Some constants
 final String apiKey = "84f2bbf63c7d4afe8419396d901fb246";
@@ -25,10 +25,10 @@ Future<NewsModel> searchArticles(String keyword, [String category = ""]) async {
 
   http.Response response = await client.get(searchUrl);
 
-// Directory appDocDir = await getApplicationDocumentsDirectory();
-//   String appDocPath = appDocDir.path;
-
-//   print('SSSSSS:' + appDocPath);
+  Directory appDocDir = await getApplicationDocumentsDirectory();
+  String appDocPath = appDocDir.path;
+  final f = File('$appDocPath/counter.txt');
+  print('SSSSSS:' + appDocPath);
 
   return NewsModel.fromJson(jsonDecode(response.body));
 }
