@@ -1,16 +1,11 @@
-# nnewss
 
-A new Flutter project.
+# Notes
 
-## Getting Started
+## To Do
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Make a minimal article page with simple navigation
+- Add shared prefrences for search results and saving articles
+- Make the search result guess what is being written
+- Use SQL to take in the user info and store it
+- Add a simple login page
+- Extend state management so it can accodomate multiple aspects of the app, use Navigator 2.0
