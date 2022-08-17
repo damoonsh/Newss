@@ -1,0 +1,33 @@
+name: api
+description: Simple app to practice Flutter.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+    
+  cupertino_icons: ^1.0.3
+  cached_network_image: ^3.1.0
+  flutter_svg: ^1.1.3
+  json_annotation: ^4.1.0
+  http: ^0.13.5
+  google_fonts: ^3.0.1
+  external_asset_bundle: ^1.0.2
+  provider: ^6.0.3
+  flutter_web_browser: ^0.17.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  build_runner: ^2.1.1
+  json_serializable: ^6.3.1
+  chopper_generator: ^4.0.1
+
+flutter:
+  uses-material-design: true
